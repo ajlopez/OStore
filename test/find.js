@@ -37,3 +37,30 @@ exports['find using two properties at criteria, failing'] = function (test) {
     test.ok(Array.isArray(result));
     test.equal(result.length, 0);
 };
+
+exports['find without criteria'] = function (test) {
+    var result = store.find();
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
+
+exports['find with empty criteria'] = function (test) {
+    var result = store.find({ });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
+
+exports['find with empty criteria and fields'] = function (test) {
+    var result = store.find({ }, { name: true });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, null);
+};
