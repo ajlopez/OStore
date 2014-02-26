@@ -83,10 +83,25 @@ TBD
 
 - 0.0.1 Published
 
+## To Do
+
+- Remove item
+- Browser support
+- Dog fooding in a project
+
 ## Inception
 
 It was born after reading an email at Node.js list:
 [Tests for a REST store generator](https://groups.google.com/forum/?hl=en?hl%3Den#!topic/nodejs/zabJWGd3MUQ)
+
+There are some recorded videos showing my TDD workflow (before switching to use simpleunit framework):
+
+[TDD Rocks! (7) OStore With JavaScript/Node.Js](http://ajlopez.wordpress.com/2013/12/21/tdd-rocks-7-ostore-with-javascriptnode-js/)
+[TDD Rocks! (2) OStore With JavaScript/Node.Js](http://ajlopez.wordpress.com/2013/11/11/tdd-rocks-2-ostore-with-javascriptnode-js/)
+
+And one video about JavaScript and TDD:
+
+[TDD Rocks! (9) JavaScript And Node.Js](http://ajlopez.wordpress.com/2014/01/16/tdd-rocks-9-javascript-and-node-js/)
 
 ## Contribution
 
