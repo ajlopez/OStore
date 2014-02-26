@@ -1,37 +1,35 @@
 
-var ostore = require('..'),
-    assert = require('assert');
+var ostore = require('..');
 
-// get null if not exists
+exports['get null if not exists'] = function (test) {
+    var store = ostore.createStore();
+    var result = store.get(1);
 
-var store = ostore.createStore();
-var result = store.get(1);
+    test.equal(result, null);
+};
 
-assert.equal(result, null);
+exports['put and get'] = function (test) {
+    var store = ostore.createStore();
+    var adam = { name: 'Adam', age: 800 };
+    store.put(1, adam);
+    var result = store.get(1);
+    test.ok(result);
+    test.equal(result.name, 'Adam');
+    test.equal(result.age, 800);
+};
 
-// put and get
-
-var store = ostore.createStore();
-var adam = { name: 'Adam', age: 800 };
-store.put(1, adam);
-var result = store.get(1);
-assert.ok(result);
-assert.equal(result.name, 'Adam');
-assert.equal(result.age, 800);
-
-// put and get two values
-
-var store = ostore.createStore();
-var adam = { name: 'Adam', age: 800 };
-store.put(1, adam);
-var eve = { name: 'Eve', age: 700 };
-store.put(2, eve);
-var result = store.get(1);
-assert.ok(result);
-assert.equal(result.name, 'Adam');
-assert.equal(result.age, 800);
-var result = store.get(2);
-assert.ok(result);
-assert.equal(result.name, 'Eve');
-assert.equal(result.age, 700);
-
+exports['put and get two values'] = function (test) {
+    var store = ostore.createStore();
+    var adam = { name: 'Adam', age: 800 };
+    store.put(1, adam);
+    var eve = { name: 'Eve', age: 700 };
+    store.put(2, eve);
+    var result = store.get(1);
+    test.ok(result);
+    test.equal(result.name, 'Adam');
+    test.equal(result.age, 800);
+    var result = store.get(2);
+    test.ok(result);
+    test.equal(result.name, 'Eve');
+    test.equal(result.age, 700);
+};

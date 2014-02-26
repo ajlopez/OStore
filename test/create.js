@@ -1,8 +1,7 @@
 
-var ostore = require('..'),
-    assert = require('assert');
+var ostore = require('..');
     
-// create a store
-
-var store = ostore.createStore();
-assert.ok(store);
+exports['create a store'] = function (test) {
+    var store = ostore.createStore();
+    test.ok(store);
+}

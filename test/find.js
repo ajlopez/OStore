@@ -1,42 +1,39 @@
 
-var ostore = require('..'),
-    assert = require('assert');
+var ostore = require('..');
 
 var store = ostore.createStore();
 
-// find with no results
+exports['find with no results'] = function (test) {
+    var result = store.find({ name: 'Abel' });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+};
 
-var result = store.find({ name: 'Abel' });
-assert.ok(result);
-assert.ok(Array.isArray(result));
-assert.equal(result.length, 0);
+exports['put and find'] = function (test) {
+    var adam = { name: 'Adam', age: 800 };
+    store.put(1, adam);
 
-// put and find
+    var result = store.find({ name: 'Adam' });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
 
-var adam = { name: 'Adam', age: 800 };
-store.put(1, adam);
+exports['find using two properties at criteria'] = function (test) {
+    var result = store.find({ name: 'Adam', age: 800 });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
 
-var result = store.find({ name: 'Adam' });
-assert.ok(result);
-assert.ok(Array.isArray(result));
-assert.equal(result.length, 1);
-assert.equal(result[0].name, 'Adam');
-assert.equal(result[0].age, 800);
-
-// find using two properties at criteria
-
-var result = store.find({ name: 'Adam', age: 800 });
-assert.ok(result);
-assert.ok(Array.isArray(result));
-assert.equal(result.length, 1);
-assert.equal(result[0].name, 'Adam');
-assert.equal(result[0].age, 800);
-
-
-// find using two properties at criteria, failing
-
-var result = store.find({ name: 'Adam', age: 600 });
-assert.ok(result);
-assert.ok(Array.isArray(result));
-assert.equal(result.length, 0);
-
+exports['find using two properties at criteria, failing'] = function (test) {
+    var result = store.find({ name: 'Adam', age: 600 });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+};
