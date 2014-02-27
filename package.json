@@ -7,7 +7,7 @@
 , "main": "./lib/ostore.js"
 , "engines": { "node": ">= 0.6.0 && < 0.11.0" }
 , "scripts": {
-    "test": "node ./test.js"
+    "test": "simpleunit test"
   }
 , "bin": {
     "ostore": "./bin/ostore"
@@ -15,5 +15,6 @@
 , "dependencies": {
   }
 , "devDependencies": {
+    "simpleunit": "0.0.2"
   }
 }
