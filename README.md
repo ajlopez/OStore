@@ -44,6 +44,11 @@ Retrieve item by key
 var item = store.get(id);
 ```
 
+Remove item by key
+```javascript
+store.remove(id);
+```
+
 Retrieve items
 ```javascript
 var items = store.find(id);
@@ -82,6 +87,8 @@ TBD
 ## Versions
 
 - 0.0.1 Published
+- 0.0.2 Published, fixing package.json
+- 0.0.3 Published, remove added
 
 ## To Do
 
