@@ -64,3 +64,12 @@ exports['find with empty criteria and fields'] = function (test) {
     test.equal(result[0].name, 'Adam');
     test.equal(result[0].age, null);
 };
+
+exports['clear and find'] = function (test) {
+    store.clear();
+    var result = store.find();
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+};
+

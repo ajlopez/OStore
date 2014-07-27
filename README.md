@@ -89,6 +89,7 @@ TBD
 - 0.0.1 Published
 - 0.0.2 Published, fixing package.json
 - 0.0.3 Published, remove added
+- 0.0.4 Published, store.clear
 
 ## To Do
 
