@@ -31,6 +31,22 @@ exports['find using two properties at criteria'] = function (test) {
     test.equal(result[0].age, 800);
 };
 
+exports['find using $gt operator'] = function (test) {
+    var result = store.find({ age: { $gt: 600 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
+
+exports['find using $gt and $lt operators'] = function (test) {
+    var result = store.find({ age: { $gt: 600, $lt: 700 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+};
+
 exports['find using two properties at criteria, failing'] = function (test) {
     var result = store.find({ name: 'Adam', age: 600 });
     test.ok(result);
