@@ -47,6 +47,19 @@ exports['find using $gt and $lt operators'] = function (test) {
     test.equal(result.length, 0);
 };
 
+exports['find using $eq operator'] = function (test) {
+    var result = store.find({ age: { $eq: 800 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].age, 800);
+
+    var result = store.find({ age: { $eq: 700 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+};
+
 exports['find using two properties at criteria, failing'] = function (test) {
     var result = store.find({ name: 'Adam', age: 600 });
     test.ok(result);
