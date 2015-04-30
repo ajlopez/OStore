@@ -47,6 +47,27 @@ exports['find using $gt and $lt operators'] = function (test) {
     test.equal(result.length, 0);
 };
 
+exports['find using $gte and $lte operators'] = function (test) {
+    var result = store.find({ age: { $gte: 600, $lte: 700 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+
+    var result = store.find({ age: { $gte: 600, $lte: 800 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+
+    var result = store.find({ age: { $gte: 800, $lte: 900 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
+
 exports['find using $eq operator'] = function (test) {
     var result = store.find({ age: { $eq: 800 } });
     test.ok(result);
