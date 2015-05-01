@@ -94,6 +94,15 @@ exports['find using $eq operator'] = function (test) {
     test.equal(result.length, 0);
 };
 
+exports['find using invalid operator $foo'] = function (test) {
+    test.throws(
+        function () {
+            store.find({ age: { $foo: 600 } });
+        },
+        "Invalid operator '$foo'"
+    );
+};
+
 exports['find using two properties at criteria, failing'] = function (test) {
     var result = store.find({ name: 'Adam', age: 600 });
     test.ok(result);
