@@ -137,6 +137,22 @@ exports['find with empty criteria and fields'] = function (test) {
     test.equal(result[0].age, null);
 };
 
+exports['put and find using $in'] = function (test) {
+    var abel = { name: 'Abel', age: 600 };
+    store.put(2, abel);
+    var caine = { name: 'Caine', age: 500 };
+    store.put(3, caine);
+
+    var result = store.find({ name: { $in: ['Adam', 'Caine'] }});
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 2);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.equal(result[1].name, 'Caine');
+    test.equal(result[1].age, 500);
+};
+
 exports['clear and find'] = function (test) {
     store.clear();
     var result = store.find();
@@ -144,4 +160,3 @@ exports['clear and find'] = function (test) {
     test.ok(Array.isArray(result));
     test.equal(result.length, 0);
 };
-
