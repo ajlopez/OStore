@@ -81,7 +81,7 @@ exports['find using $eq operator'] = function (test) {
     test.equal(result.length, 0);
 };
 
-exports['find using $eq operator'] = function (test) {
+exports['find using $ne operator'] = function (test) {
     var result = store.find({ age: { $ne: 700 } });
     test.ok(result);
     test.ok(Array.isArray(result));
