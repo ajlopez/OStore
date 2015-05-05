@@ -153,6 +153,17 @@ exports['put and find using $in'] = function (test) {
     test.equal(result[1].age, 500);
 };
 
+exports['find using $or'] = function (test) {
+    var result = store.find({ $or: [ { name: 'Adam' }, { age: 500 } ] });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 2);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.equal(result[1].name, 'Caine');
+    test.equal(result[1].age, 500);
+};
+
 exports['clear and find'] = function (test) {
     store.clear();
     var result = store.find();
