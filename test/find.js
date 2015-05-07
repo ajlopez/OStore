@@ -182,6 +182,15 @@ exports['find using $and'] = function (test) {
     test.equal(result[0].age, 800);
 };
 
+exports['find using $not'] = function (test) {
+    var result = store.find({ $not: { age: { $lt: 750 } } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
+
 exports['clear and find'] = function (test) {
     store.clear();
     var result = store.find();
