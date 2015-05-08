@@ -200,6 +200,23 @@ exports['find using $not on property'] = function (test) {
     test.equal(result[0].age, 800);
 };
 
+exports['find using $nor'] = function (test) {
+    var result = store.find({ $nor: [{ age: { $lt: 750 } }, { name: 'Abel' }]});
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
+
+exports['find using $not on property'] = function (test) {
+    var result = store.find({ age: { $nor: [{ $lt: 750 }, { $gt: 950 }] } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
 exports['clear and find'] = function (test) {
     store.clear();
     var result = store.find();
