@@ -217,6 +217,34 @@ exports['find using $not on property'] = function (test) {
     test.equal(result[0].name, 'Adam');
     test.equal(result[0].age, 800);
 };
+
+exports['find using $exists'] = function (test) {
+    var result = store.find({ name: { $exists: true } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[1].name, 'Abel');
+    test.equal(result[2].name, 'Caine');
+};
+
+exports['find using $exists with undefined property'] = function (test) {
+    var result = store.find({ country: { $exists: true } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+};
+
+exports['find using not $exists with undefined property'] = function (test) {
+    var result = store.find({ country: { $exists: false } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[1].name, 'Abel');
+    test.equal(result[2].name, 'Caine');
+};
+
 exports['clear and find'] = function (test) {
     store.clear();
     var result = store.find();
