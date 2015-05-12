@@ -22,3 +22,17 @@ exports['put and aggregate'] = function (test) {
     test.equal(result[0].age, 800);
 };
 
+exports['put and aggregate with match'] = function (test) {
+    var eve = { name: 'Eve', age: 700 };
+    store.put(2, eve);
+    var abel = { name: 'Abel', age: 600 };
+    store.put(3, abel);
+
+    var result = store.aggregate({ $match: { name: 'Adam' } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+};
+
