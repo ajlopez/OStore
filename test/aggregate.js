@@ -36,3 +36,14 @@ exports['put and aggregate with match'] = function (test) {
     test.equal(result[0].age, 800);
 };
 
+exports['aggregate with limit'] = function (test) {
+    var result = store.aggregate({ $limit: 2 });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 2);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.equal(result[1].name, 'Eve');
+    test.equal(result[1].age, 700);
+};
+
