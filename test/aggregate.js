@@ -78,3 +78,15 @@ exports['aggregate with skip and limit'] = function (test) {
     test.equal(result[0].age, 700);
 };
 
+exports['aggregate with project'] = function (test) {
+    var result = store.aggregate({ $project: { name: true } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Adam');
+    test.strictEqual(result[0].age, undefined);
+    test.equal(result[1].name, 'Eve');
+    test.strictEqual(result[1].age, undefined);
+    test.equal(result[2].name, 'Abel');
+    test.strictEqual(result[2].age, undefined);
+};
