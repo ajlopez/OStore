@@ -69,3 +69,12 @@ exports['aggregate with skip'] = function (test) {
     test.equal(result[1].age, 600);
 };
 
+exports['aggregate with skip and limit'] = function (test) {
+    var result = store.aggregate({ $skip: 1 }, { $limit: 1 });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Eve');
+    test.equal(result[0].age, 700);
+};
+
