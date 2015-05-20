@@ -120,7 +120,7 @@ exports['aggregate with project excluding id field'] = function (test) {
     test.strictEqual(result[2].id, undefined);
 };
 
-exports['aggregate with sort by name'] = function (test) {
+exports['aggregate with sort by name using 1'] = function (test) {
     var result = store.aggregate({ $sort: { name: 1 } });
     test.ok(result);
     test.ok(Array.isArray(result));
@@ -135,3 +135,52 @@ exports['aggregate with sort by name'] = function (test) {
     test.equal(result[2].age, 700);
     test.ok(result[2].id);
 };
+
+exports['aggregate with sort by name using true'] = function (test) {
+    var result = store.aggregate({ $sort: { name: true } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Abel');
+    test.equal(result[0].age, 600);
+    test.ok(result[0].id);
+    test.equal(result[1].name, 'Adam');
+    test.equal(result[1].age, 800);
+    test.ok(result[1].id);
+    test.equal(result[2].name, 'Eve');
+    test.equal(result[2].age, 700);
+    test.ok(result[2].id);
+};
+
+exports['aggregate with sort by name using -1'] = function (test) {
+    var result = store.aggregate({ $sort: { name: -1 }});
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Eve');
+    test.equal(result[0].age, 700);
+    test.ok(result[0].id);
+    test.equal(result[1].name, 'Adam');
+    test.equal(result[1].age, 800);
+    test.ok(result[1].id);
+    test.equal(result[2].name, 'Abel');
+    test.equal(result[2].age, 600);
+    test.ok(result[2].id);
+};
+
+exports['aggregate with sort by name using false'] = function (test) {
+    var result = store.aggregate({ $sort: { name: false }});
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Eve');
+    test.equal(result[0].age, 700);
+    test.ok(result[0].id);
+    test.equal(result[1].name, 'Adam');
+    test.equal(result[1].age, 800);
+    test.ok(result[1].id);
+    test.equal(result[2].name, 'Abel');
+    test.equal(result[2].age, 600);
+    test.ok(result[2].id);
+};
+
