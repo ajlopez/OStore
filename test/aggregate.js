@@ -10,9 +10,9 @@ exports['aggregate with no results'] = function (test) {
     test.equal(result.length, 0);
 };
 
-exports['put and aggregate'] = function (test) {
+exports['add and aggregate'] = function (test) {
     var adam = { name: 'Adam', age: 800 };
-    store.put(1, adam);
+    store.add(adam);
 
     var result = store.aggregate();
     test.ok(result);
@@ -24,9 +24,9 @@ exports['put and aggregate'] = function (test) {
 
 exports['put and aggregate with match'] = function (test) {
     var eve = { name: 'Eve', age: 700 };
-    store.put(2, eve);
+    store.add(eve);
     var abel = { name: 'Abel', age: 600 };
-    store.put(3, abel);
+    store.add(abel);
 
     var result = store.aggregate({ $match: { name: 'Adam' } });
     test.ok(result);
