@@ -58,6 +58,17 @@ exports['aggregate with match and limit'] = function (test) {
     test.equal(result[1].age, 700);
 };
 
+exports['aggregate with match and limit in the same option object'] = function (test) {
+    var result = store.aggregate({ $match: { age: { $gt: 100 } }, $limit: 2 });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 2);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.equal(result[1].name, 'Eve');
+    test.equal(result[1].age, 700);
+};
+
 exports['aggregate with skip'] = function (test) {
     var result = store.aggregate({ $skip: 1 });
     test.ok(result);
@@ -71,6 +82,15 @@ exports['aggregate with skip'] = function (test) {
 
 exports['aggregate with skip and limit'] = function (test) {
     var result = store.aggregate({ $skip: 1 }, { $limit: 1 });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Eve');
+    test.equal(result[0].age, 700);
+};
+
+exports['aggregate with skip and limit in the same option object'] = function (test) {
+    var result = store.aggregate({ $skip: 1, $limit: 1 });
     test.ok(result);
     test.ok(Array.isArray(result));
     test.equal(result.length, 1);
