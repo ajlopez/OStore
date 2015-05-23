@@ -150,6 +150,25 @@ exports['aggregate with project excluding field using -1'] = function (test) {
     test.strictEqual(result[2].age, undefined);
 };
 
+exports['aggregate with project and new field with constant value'] = function (test) {
+    var result = store.aggregate({ $project: { weight: 100 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.equal(result[0].weight, 100);
+    test.ok(result[0].id);
+    test.equal(result[1].name, 'Eve');
+    test.equal(result[1].age, 700);
+    test.equal(result[1].weight, 100);
+    test.ok(result[1].id);
+    test.equal(result[2].name, 'Abel');
+    test.equal(result[2].age, 600);
+    test.equal(result[2].weight, 100);
+    test.ok(result[2].id);
+};
+
 exports['aggregate with project excluding id field'] = function (test) {
     var result = store.aggregate({ $project: { id: false } });
     test.ok(result);
