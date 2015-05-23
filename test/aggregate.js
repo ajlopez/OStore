@@ -111,8 +111,34 @@ exports['aggregate with project'] = function (test) {
     test.strictEqual(result[2].age, undefined);
 };
 
+exports['aggregate with project with field equals 1'] = function (test) {
+    var result = store.aggregate({ $project: { name: 1 } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Adam');
+    test.strictEqual(result[0].age, undefined);
+    test.equal(result[1].name, 'Eve');
+    test.strictEqual(result[1].age, undefined);
+    test.equal(result[2].name, 'Abel');
+    test.strictEqual(result[2].age, undefined);
+};
+
 exports['aggregate with project excluding field'] = function (test) {
     var result = store.aggregate({ $project: { age: false } });
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.equal(result[0].name, 'Adam');
+    test.strictEqual(result[0].age, undefined);
+    test.equal(result[1].name, 'Eve');
+    test.strictEqual(result[1].age, undefined);
+    test.equal(result[2].name, 'Abel');
+    test.strictEqual(result[2].age, undefined);
+};
+
+exports['aggregate with project excluding field using -1'] = function (test) {
+    var result = store.aggregate({ $project: { age: -1 } });
     test.ok(result);
     test.ok(Array.isArray(result));
     test.equal(result.length, 3);
