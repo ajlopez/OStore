@@ -1,6 +1,6 @@
 # OStore
 
-In-memory object store for JavaScript
+In-memory object store for JavaScript, with some MongoDB operators
 
 ## Installation
 
