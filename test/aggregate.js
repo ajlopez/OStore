@@ -279,6 +279,28 @@ exports['aggregate with project and new field with simple expressions greater th
     test.ok(result[2].id);
 };
 
+exports['aggregate with project and new field with simple expressions greater than or equal'] = function (test) {
+    var result = store.aggregate({ $project: { greaterThanOrEqual700: { $gte: [ "$age", 700 ] }}});
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.strictEqual(result[0].greaterThanOrEqual700, true);
+    test.ok(result[0].id);
+    
+    test.equal(result[1].name, 'Eve');
+    test.equal(result[1].age, 700);
+    test.strictEqual(result[1].greaterThanOrEqual700, true);
+    test.ok(result[1].id);
+    
+    test.equal(result[2].name, 'Abel');
+    test.equal(result[2].age, 600);
+    test.strictEqual(result[2].greaterThanOrEqual700, false);
+    test.ok(result[2].id);
+};
+
 exports['aggregate with project excluding id field'] = function (test) {
     var result = store.aggregate({ $project: { id: false } });
     test.ok(result);
