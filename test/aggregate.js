@@ -323,6 +323,28 @@ exports['aggregate with project and new field with simple expressions greater th
     test.ok(result[2].id);
 };
 
+exports['aggregate with project and new field with simple expressions substr'] = function (test) {
+    var result = store.aggregate({ $project: { firstLetters: { $substr: [ "$name", 0, 2 ] }}});
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.strictEqual(result[0].firstLetters, 'Ad');
+    test.ok(result[0].id);
+    
+    test.equal(result[1].name, 'Eve');
+    test.equal(result[1].age, 700);
+    test.strictEqual(result[1].firstLetters, 'Ev');
+    test.ok(result[1].id);
+    
+    test.equal(result[2].name, 'Abel');
+    test.equal(result[2].age, 600);
+    test.strictEqual(result[2].firstLetters, 'Ab');
+    test.ok(result[2].id);
+};
+
 exports['aggregate with project excluding id field'] = function (test) {
     var result = store.aggregate({ $project: { id: false } });
     test.ok(result);
