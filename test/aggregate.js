@@ -434,24 +434,46 @@ exports['aggregate with project and new field with simple expressions concat man
 };
 
 exports['aggregate with project and new field with simple expression toLower'] = function (test) {
-    var result = store.aggregate({ $project: { lowerName: { $toLower: "$name" }}});
+    var result = store.aggregate({ $project: { lowerCaseName: { $toLower: "$name" }}});
     test.ok(result);
     test.ok(Array.isArray(result));
     test.equal(result.length, 3);
     
     test.equal(result[0].name, 'Adam');
     test.equal(result[0].age, 800);
-    test.strictEqual(result[0].lowerName, 'adam');
+    test.strictEqual(result[0].lowerCaseName, 'adam');
     test.ok(result[0].id);
     
     test.equal(result[1].name, 'Eve');
     test.equal(result[1].age, 700);
-    test.strictEqual(result[1].lowerName, 'eve');
+    test.strictEqual(result[1].lowerCaseName, 'eve');
     test.ok(result[1].id);
     
     test.equal(result[2].name, 'Abel');
     test.equal(result[2].age, 600);
-    test.strictEqual(result[2].lowerName, 'abel');
+    test.strictEqual(result[2].lowerCaseName, 'abel');
+    test.ok(result[2].id);
+};
+
+exports['aggregate with project and new field with simple expression toUpper'] = function (test) {
+    var result = store.aggregate({ $project: { upperCaseName: { $toUpper: "$name" }}});
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.strictEqual(result[0].upperCaseName, 'ADAM');
+    test.ok(result[0].id);
+    
+    test.equal(result[1].name, 'Eve');
+    test.equal(result[1].age, 700);
+    test.strictEqual(result[1].upperCaseName, 'EVE');
+    test.ok(result[1].id);
+    
+    test.equal(result[2].name, 'Abel');
+    test.equal(result[2].age, 600);
+    test.strictEqual(result[2].upperCaseName, 'ABEL');
     test.ok(result[2].id);
 };
 
