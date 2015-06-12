@@ -323,6 +323,28 @@ exports['aggregate with project and new field with compare'] = function (test) {
     test.ok(result[2].id);
 };
 
+exports['aggregate with project and new field with string compare'] = function (test) {
+    var result = store.aggregate({ $project: { compare: { $strcasecmp: [ "$name", "adam" ] }}});
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 800);
+    test.strictEqual(result[0].compare, 0);
+    test.ok(result[0].id);
+    
+    test.equal(result[1].name, 'Eve');
+    test.equal(result[1].age, 700);
+    test.strictEqual(result[1].compare, 1);
+    test.ok(result[1].id);
+    
+    test.equal(result[2].name, 'Abel');
+    test.equal(result[2].age, 600);
+    test.strictEqual(result[2].compare, -1);
+    test.ok(result[2].id);
+};
+
 exports['aggregate with project and new field with mod'] = function (test) {
     var result = store.aggregate({ $project: { modulus: { $mod: [ "$age", 7 ] }}});
     test.ok(result);
