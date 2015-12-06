@@ -1,7 +1,7 @@
 { "name": "ostore"
 , "description": "Object Store for JavaScript"
 , "keywords": [ "object", "store", "javascript" ]
-, "version": "0.0.4"
+, "version": "0.0.5"
 , "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
 , "repository": { "type": "git", "url": "git://github.com/ajlopez/OStore.git" }
 , "main": "./lib/ostore.js"

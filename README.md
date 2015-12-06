@@ -90,6 +90,7 @@ TBD
 - 0.0.2 Published, fixing package.json
 - 0.0.3 Published, remove added
 - 0.0.4 Published, store.clear
+- 0.0.5 Published, new query and aggregation operators, not documented yet (see test folder)
 
 ## To Do
 
