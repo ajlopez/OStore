@@ -91,12 +91,13 @@ TBD
 - 0.0.3 Published, remove added
 - 0.0.4 Published, store.clear
 - 0.0.5 Published, new query and aggregation operators, not documented yet (see test folder)
+- 0.0.6 Published, update with criteria and multi, remove with criteria
 
 ## To Do
 
-- Remove item
+- Remove item (done)
 - Browser support
-- Dog fooding in a project
+- Dog fooding in a project (Done)
 
 ## Inception
 
