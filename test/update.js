@@ -36,3 +36,49 @@ exports['update age using criteria'] = function (test) {
     test.equal(result[0].name, 'Eve');
     test.equal(result[0].age, 700);
 }
+
+exports['update age on one item using criteria with operator'] = function (test) {
+    var store = ostore.createStore();
+    var adam = { name: 'Adam', age: 800 };
+    var eve = { name: 'Eve', age: 700 };
+    
+    store.add(adam);
+    store.add(eve);
+
+    store.update({ age: { $gt: 600 } }, { age: 1000 });
+
+    var result = store.find({ name: 'Adam' });
+    test.ok(result);
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 1000);
+
+    var result = store.find({ name: 'Eve' });
+    test.ok(result);
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Eve');
+    test.equal(result[0].age, 700);
+}
+
+exports['update age on many item susing criteria with operator'] = function (test) {
+    var store = ostore.createStore();
+    var adam = { name: 'Adam', age: 800 };
+    var eve = { name: 'Eve', age: 700 };
+    
+    store.add(adam);
+    store.add(eve);
+
+    store.update({ age: { $gt: 600 } }, { age: 1000 }, { multi: true });
+
+    var result = store.find({ name: 'Adam' });
+    test.ok(result);
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Adam');
+    test.equal(result[0].age, 1000);
+
+    var result = store.find({ name: 'Eve' });
+    test.ok(result);
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'Eve');
+    test.equal(result[0].age, 1000);
+}
